@@ -97,7 +97,8 @@ public class ZEDSpatialMappingManager : MonoBehaviour {
         
         if (saveWhenOver) {
             print("Saving Mesh");
-            print(SaveMesh(meshPath));
+            if (SaveMesh(meshPath)) print("Saving complete");
+            else print("Error while saving mesh");
         }
     }
 
@@ -121,7 +122,7 @@ public class ZEDSpatialMappingManager : MonoBehaviour {
             spatialMapping.Update();
         }
 
-        if (Input.GetKeyDown("space")) {
+        if (Input.GetKeyDown(KeyCode.Space)) {
             if (!IsRunning) {
                 StartSpatialMapping();
                 print("Starting Mapping");
