@@ -1,15 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class EditorController : MonoBehaviour {
     GameObject cube;
     List<GameObject> terminals = new List<GameObject>();
-    public int mode = 0;
+    public GameObject controllers;
     Vector3 scale;
     bool gameMode = false;
 
     private void Start() {
+        XRSettings.enabled = false;
         cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         cube.layer = 2;
         cube.transform.rotation = transform.rotation;
@@ -87,6 +89,9 @@ public class EditorController : MonoBehaviour {
                     foreach(GameObject p in planes) {
                         p.SetActive(false);
                     }
+                    XRSettings.enabled = true;
+                    controllers.SetActive(true);
+                    transform.position = new Vector3(0, 0, 0);
 
                 } else {
                     print("Need " + (5 - num_inter) + " more interactive surfaces");
@@ -109,8 +114,8 @@ public class EditorController : MonoBehaviour {
 
         Vector3 movement = new Vector3(moveHorizontal, moveVerticalY, moveVertical);
 
-        transform.parent.transform.Translate(movement);
-        transform.parent.transform.Rotate(0, rotation, 0);
+        transform.Translate(movement);
+        transform.Rotate(0, rotation, 0);
     }
 
 }

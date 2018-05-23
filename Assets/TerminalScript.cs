@@ -15,6 +15,7 @@ public class TerminalScript : MonoBehaviour {
 	}
 
     void OnCollisionEnter(Collision col) {
+        print(col.gameObject.name);
         if (col.gameObject.name == "Controller") {
             gameObject.GetComponent<Renderer>().material.color = Color.blue;
         }
