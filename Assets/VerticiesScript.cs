@@ -139,6 +139,7 @@ public class VerticiesScript : MonoBehaviour {
         float z_len = max_z - min_z;
 
         GameObject plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
+        plane.name = "Floor";
         plane.transform.position = new Vector3(min_x + x_len/2, avg_y, min_z + z_len/2);
         plane.transform.localScale = new Vector3(x_len/10, 1, z_len/10);
         print("Done in " + (Time.realtimeSinceStartup - t0) + "s");

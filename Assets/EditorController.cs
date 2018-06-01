@@ -9,6 +9,7 @@ public class EditorController : MonoBehaviour {
     public GameObject controllers;
     Vector3 scale;
     bool gameMode = false;
+    bool setup = false;
 
     private void Start() {
         XRSettings.enabled = false;
@@ -91,14 +92,40 @@ public class EditorController : MonoBehaviour {
                     }
                     XRSettings.enabled = true;
                     controllers.SetActive(true);
-                    transform.position = new Vector3(0, 0, 0);
+                    transform.position = new Vector3(transform.position.x, GameObject.Find("Floor").transform.position.y, transform.position.z);
+
+                    
 
                 } else {
                     print("Need " + (5 - num_inter) + " more interactive surfaces");
                 }
             }
         } else { //GAME MODE
+            if (!setup){
+                print("Trying to detect controllers...");
 
+                while(controllers.transform.childCount != 2){
+                    return;
+                }
+
+                Transform L_C = controllers.transform.GetChild(0);
+                Transform R_C = controllers.transform.GetChild(1);
+
+                while (L_C.childCount != 0){
+                    L_C = L_C.GetChild(0);
+                    R_C = R_C.GetChild(0);
+                }
+                L_C.gameObject.AddComponent<BoxCollider>();
+                R_C.gameObject.AddComponent<BoxCollider>();
+                Rigidbody L_R = L_C.gameObject.AddComponent<Rigidbody>();
+                Rigidbody R_R = R_C.gameObject.AddComponent<Rigidbody>();
+                L_R.useGravity = false;
+                R_R.useGravity = false;
+                L_R.constraints = RigidbodyConstraints.FreezeAll;
+                R_R.constraints = RigidbodyConstraints.FreezeAll;
+                setup = true;
+                print("Controllers setup complete");
+            }
         }
     }
 
