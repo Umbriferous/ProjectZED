@@ -41,7 +41,7 @@ public class ZEDSpatialMappingManager : MonoBehaviour{
     /// <summary>
     /// Path to save the .obj and the .area
     /// </summary>
-    public string meshPath = "ZedMesh.obj";
+    public string meshPath = "_ZedMesh_.obj";
 
     /// <summary>
     /// The parameters of filtering

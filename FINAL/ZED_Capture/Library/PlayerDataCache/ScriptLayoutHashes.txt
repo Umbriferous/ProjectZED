@@ -1,7 +1,8 @@
-Metro
+WindowsStandalone
 PlayerPath?
-C:/Users/TP/Documents/GitHub/ProjectZED/FINAL/ZED_Capture/Builds/b3uwp
+C:/Users/TP/Documents/GitHub/ProjectZED/FINAL/ZED_Capture/Builds/b5/b5.exe
 SceneListBegin?
+Assets/S_Menu.unity
 Assets/CaptureScene.unity
 SceneListEnd?
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset

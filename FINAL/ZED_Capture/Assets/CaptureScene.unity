@@ -162,7 +162,7 @@ MonoBehaviour:
   isFilteringEnable: 1
   isTextured: 0
   saveWhenOver: 1
-  meshPath: Assets/ZEDMesh.obj
+  meshPath: _ZEDMesh_.obj
   filterParameters: 0
 --- !u!4 &237737851
 Transform:
