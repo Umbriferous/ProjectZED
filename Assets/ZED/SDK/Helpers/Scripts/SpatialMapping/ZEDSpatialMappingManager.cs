@@ -2,7 +2,7 @@
 
 using UnityEngine;
 using System.Collections.Generic;
-
+using UnityEngine.SceneManagement;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -41,7 +41,7 @@ public class ZEDSpatialMappingManager : MonoBehaviour {
     /// <summary>
     /// Path to save the .obj and the .area
     /// </summary>
-    public string meshPath = "_Mesh.obj";
+    public string meshPath = "_TestMesh.obj";
 
     /// <summary>
     /// The parameters of filtering
@@ -55,6 +55,11 @@ public class ZEDSpatialMappingManager : MonoBehaviour {
     private ZEDManager manager;
 
     private void Start() {
+        GlobalScript globals = GameObject.Find("Globals").GetComponent<GlobalScript>();
+        resolution_preset = globals.resolution_preset;
+        range_preset = globals.range_preset;
+        isFilteringEnable = globals.isFilteringEnable;
+        isTextured = globals.isTextured;
         manager = GameObject.FindObjectOfType(typeof(ZEDManager)) as ZEDManager;
         spatialMapping = new ZEDSpatialMapping(transform, sl.ZEDCamera.GetInstance(), manager);
     }
@@ -97,15 +102,18 @@ public class ZEDSpatialMappingManager : MonoBehaviour {
         
         if (saveWhenOver) {
             print("Saving Mesh");
-            if (SaveMesh(meshPath)) print("Saving complete");
+            if (SaveMesh(meshPath)){
+                print("Saving complete");
+                SceneManager.LoadScene("S_Editor");
+            }
             else print("Error while saving mesh");
         }
+
     }
 
     public void StartSpatialMapping() {
         transform.position = Vector3.zero;
         transform.rotation = Quaternion.identity;
-        //spatialMapping.filterParameters
         spatialMapping.StartStatialMapping(resolution_preset, range_preset, isTextured);
     }
 
@@ -174,7 +182,9 @@ public class ZEDSpatialMappingManager : MonoBehaviour {
         spatialMapping.SetMeshRenderer();
         return spatialMapping.LoadMesh(meshPath);
     }
+
 }
+
 #if UNITY_EDITOR
 
 #endif

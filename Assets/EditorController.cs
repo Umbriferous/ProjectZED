@@ -13,6 +13,7 @@ public class EditorController : MonoBehaviour {
 
     private void Start() {
         XRSettings.enabled = false;
+
         cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         cube.layer = 2;
         cube.transform.rotation = transform.rotation;
