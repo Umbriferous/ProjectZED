@@ -911,6 +911,7 @@ public class ZEDSpatialMapping
     /// </summary>
     public void StopStatialMapping()
     {
+        print("trying to stop");
         stopWanted = true;
     }
 

@@ -99,7 +99,7 @@ public class ZEDSpatialMappingManager : MonoBehaviour {
     }
 
     void SpatialMappingHasStopped() {
-        
+        print("test00");
         if (saveWhenOver) {
             print("Saving Mesh");
             if (SaveMesh(meshPath)){
@@ -122,6 +122,7 @@ public class ZEDSpatialMappingManager : MonoBehaviour {
     /// </summary>
     public void StopSpatialMapping() {
         spatialMapping.StopStatialMapping();
+        SpatialMappingHasStopped();
     }
 
     private void Update() {
